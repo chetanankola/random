@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <title>Nav</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+
+    <style type="text/css">
+    /*reset styles*/
+    * {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+    li { list-style:none; text-decoration:none;}
+    html, body, div {
+        display: block;
+        margin: 0;
+        padding: 0;
+        font-family: arial, sans-serif;
+    }
+
+    body {
+        background: #181512;
+    }
+
+
+    .clearfix:after {
+       content: " ";
+       visibility: hidden;
+       display: block;
+       height: 0;
+       clear: both;
+    }
+    #top {
+        position: relative;
+        margin: 0;
+        background: #94000D;
+        color: #ccc;
+        height: 70px;
+    }
+
+    #container {
+        /*border: 1px solid #000000;*/
+        /*overflow: auto;*/
+        width: 100%;
+        margin: 0;
+        margin-top: -10px;
+        /*display: -webkit-box;*/
+    }
+
+    #left {
+        /*border:1px solid red;*/
+        /*width: 250px;*/
+        float: left;
+        background: #181512;
+        height:92vh;
+        -webkit-transition: margin-left 1s;
+
+        /*-webkit-box-flex: 1.0;*/
+    }
+    #center {
+        /*border:1px solid green;*/
+        background: #2C2822;
+        margin-left: 204px;
+        height:92vh;
+        padding: 10px;
+        -webkit-transition: margin-left 1s;
+        /*-webkit-box-flex: 2.0;*/
+    }
+
+
+    .nav-menu ul {
+        margin:10px;
+        margin-top: 40px;
+        padding:0;
+        text-align:left;
+    }
+
+    .nav-menu li {
+        margin: 5px;
+        position: relative;
+
+
+        /*style*/
+        padding: 12px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 1px 7px rgba(0,0,0,.4);
+        -moz-box-shadow: 0 1px 7px rgba(0,0,0,.4);
+        box-shadow: 0 1px 7px rgba(0,0,0,.4);
+
+        color: #C9C9C9;
+        background: #444240;
+        cursor: pointer;
+        -webkit-user-select: none;
+    }
+
+    /**
+    Navigation selection style
+    **/
+    .nav-menu li.menu-item-selected {
+
+        background: #918787;
+        color: #3A3A3A;
+        /*red override*/
+
+        /*
+        background: #8F3939;
+        color: #F1EEEA;
+        */
+    }
+    .nav-menu li.item-in-focus {
+        /*box-shadow: 0 1px 7px #fff; */
+        background: #C9C9C9;
+        color: #3F3C38;
+
+    }
+    .content-data li.content-item-selected {
+        /*outline: 4px solid #ccc;*/
+    }
+    .content-data li.item-in-focus {
+        border: 6px solid #8A8A8A;
+        border-radius: 8px;
+        box-shadow: 0 2px 13px #000;
+        -webkit-transition: border 0.1s;
+    }
+    .content-main {
+        padding: 0;
+        margin: 0;
+    }
+
+    .content-title h1 {color: #888886; font-size: 26px;}
+    .content-data ul {
+        padding:0;
+    }
+
+    .content-data img {margin-bottom: -4px;}
+    .content-data li {
+        padding:0;
+        display: inline-block;
+        margin-right: 34px;
+        margin-top:20px;
+        border: solid 6px transparent;/*to prevent */
+        /*padding:10px;*/
+
+        /*margin-right: 10px;*/
+        /*margin-bottom: 5px;*/
+    }
+
+    @media (max-width: 670px) {
+
+        #left {margin-left: -195px;-webkit-transition: margin-left 1s;}
+        #center {margin-left: 10px;-webkit-transition: margin-left 1s;}
+    }
+        </style>
+
+</head>
+
+
+
+
+<body>
+
+    <div id='netflix'>
+        <div id='top'>
+        </div>
+        <div id="container">
+
+            <div id="left" class="clearfix">
+                <div class="nav-menu">
+                    <ul>
+                        <li id='suggestions-for-you' data='Suggestions For You'><div>Suggestions For You</div></li>
+                        <li id='recently-watched' data='Recently Watched'><div>Recently Watched</div></li>
+                        <li id='new-arrivals' data='New Arrivals'><div>New Arrivals</div></li>
+                        <li id='instant-que' data='Instant Queue'><div>Instant Queue</div></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id='center'>
+
+                <div class='content-main'>
+
+
+                    <div class='content-title'>
+                        <!--<h1>Suggestions For You</h1>-->
+                    </div>
+
+                    <div class='content-data'>
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="./yui.js"></script>
+        <script src="./navigation.js"></script>
+    <script type="text/javascript">
+            var Y = YUI(),
+                dataMapping = {
+                    'suggestions-for-you': {
+                        parentId: 'suggestions-for-you',
+                        contenttitle: 'Suggestions For You',
+                        data: [
+                            {
+                                imgUrl: './box_art/822761.jpg',
+                                name: '822761.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/829299.jpg',
+                                name: '829299.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/829508.jpg',
+                                name: '829508.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/830288.jpg',
+                                name: '830288.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/840951.jpg',
+                                name: '840951.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/841112.jpg',
+                                name: '841112.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/841246.jpg',
+                                name: '841246.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/841257.jpg',
+                                name: '841257.jpg'
+                            }
+                        ]
+                    },
+                    'recently-watched': {
+                        parentId: 'recently-watched',
+                        contenttitle: 'Recently Watched',
+                        data: [
+                            {
+                                imgUrl: './box_art/841270.jpg',
+                                name: '841270.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/841271.jpg',
+                                name: '841271.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/841337.jpg',
+                                name: '841337.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/850831.jpg',
+                                name: '850831.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/851778.jpg',
+                                name: '851778.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/868813.jpg',
+                                name: '868813.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/868989.jpg',
+                                name: '868989.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/868992.jpg',
+                                name: '868992.jpg'
+                            }
+                        ]
+                    },
+                    'new-arrivals': {
+                        parentId: 'new-arrivals',
+                        contenttitle: 'New Arrivals',
+                        data: [
+                            {
+                                imgUrl: './box_art/868994.jpg',
+                                name: '868994.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869023.jpg',
+                                name: '869023.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869096.jpg',
+                                name: '869096.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869203.jpg',
+                                name: '869203.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869237.jpg',
+                                name: '869237.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869380.jpg',
+                                name: '869380.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869382.jpg',
+                                name: '869382.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869386.jpg',
+                                name: '869386.jpg'
+                            }
+                        ]
+                    },
+                    'instant-que': {
+                        parentId: 'instant-que',
+                        contenttitle: 'Instant Que',
+                        data: [
+                            {
+                                imgUrl: './box_art/869476.jpg',
+                                name: '869476.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869508.jpg',
+                                name: '869508.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869510.jpg',
+                                name: '869510.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869516.jpg',
+                                name: '869516.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869533.jpg',
+                                name: '869533.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869541.jpg',
+                                name: '869541.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/869548.jpg',
+                                name: '869548.jpg'
+                            },
+                            {
+                                imgUrl: './box_art/872532.jpg',
+                                name: '872532.jpg'
+                            }
+                        ]
+                    }
+                },
+                mockData = function (id) {
+                    return dataMapping[id];
+                };
+            // A: how do you figure out how many list items are there in a row?
+            // B: why do you need that information?
+            // A: well, how do you know which items are on the start of the row
+            // B: why would you want to know that?
+            // A: well, only if you know which items are lined up to the start of the row can you take the focus back to
+            //    the nav menu on pressing left-arrow
+
+            // solution
+            // ==========
+            // either fix the number of items in a row.
+            // or
+            // compute it dynamically on the fly (useful when browser is resized)
+            // to find out number of list items in a row do
+            // Math.floor(Y.one('.content-main ul').get('clientWidth') / Y.one('.content-main ul li'))
+
+
+            Y.use('node', 'navigation', function (Y) {
+
+                //mock jsonp first
+                Y.jsonp = {};
+                Y.jsonp = function (url, obj) {
+                    var id = url.split('?')[1].split('=')[1],
+                        mockVal = mockData(id);
+
+                    console.log(id);
+                    return obj.on.success(mockVal);
+
+                }
+
+                var na = new Y.Navigation({
+                    keyType: 'keydown',
+                    menuSelector: '.nav-menu ul',
+                    contentSelector: '.content-data ul',
+                    //maxRowItems: 4 //fixes the number of items on a row
+                });
+
+
+                na.initNav();
+
+
+                // Y.later(2000, this, function () {
+                //     na.set('maxRowItems', 3);
+                // });
+
+                //na.destroyNav();
+            });
+    </script>
+</body>
+
+</html>
